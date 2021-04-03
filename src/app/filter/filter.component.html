@@ -1,0 +1,18 @@
+<div class="container" style="margin-top: 90px;">
+
+<div>
+<p-autoComplete [(ngModel)]="selectedValue" [suggestions]="searchResult"
+ (completeMethod)="filterValue($event)" (onSelect)="selectedEmail($event)" (keyup.enter)="selectedEmail($event)" field="name" [minLength]="1"
+ placeholder="Please search by name" emptyMessage="No search found" ></p-autoComplete>
+
+<button class="ml-4" pButton type="button" label="Submit" (click)="submitValue(selectedValue)"></button>
+<p  *ngIf="showMsg" style="color: red;"><small>Already available in list</small></p>
+</div>
+
+<div class="mt-5" *ngFor="let list1 of dynamicArr">
+<p-card header={{list1.name}}>
+  <strong>email: </strong><span>{{list1.email}}</span><br>
+  <strong>details: </strong> <span title={{list1.body}}>{{list1.body|slice:0:64}}...</span>
+</p-card>
+</div>
+</div>
